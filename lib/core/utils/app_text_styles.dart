@@ -6,6 +6,7 @@ abstract class CustomTextStyles {
     fontSize: 64,
     fontWeight: FontWeight.w400,
     color: AppColors.deepBrown,
+    // ممكن استعمل جوجل فونتس بس عايزه نت
     fontFamily: "Pacifico",
   );
   static final poppins600style28 = TextStyle(

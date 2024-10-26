@@ -1,5 +1,5 @@
-import 'package:dalel_app/core/utils/app_assets.dart';
 import 'package:dalel_app/core/utils/app_text_styles.dart';
+import 'package:dalel_app/features/on_bourding/data/models/on_boarding_model.dart';
 import 'package:dalel_app/features/on_bourding/presentation/views/widgets/custom_smooth_page_indecator.dart';
 import 'package:flutter/material.dart';
 
@@ -19,37 +19,36 @@ class OnBoardingBody extends StatelessWidget {
       child: PageView.builder(
         physics: const BouncingScrollPhysics(),
         controller: _pageController,
-        itemCount: 3,
+        itemCount: onBoardingData.length,
         itemBuilder: (context, index) {
           return Column(children: [
             Container(
               width: 290,
               height: 343,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(Assets.imagesOnBoarding1),
+                  image: AssetImage(
+                    onBoardingData[index].imagePath,
+                  ),
                   fit: BoxFit.fill,
                 ),
               ),
             ),
             // Image.asset(Assets.imagesOnBoarding1),
-            const SizedBox(height: 24),
+            const SizedBox(height: 13),
             CustomSmoothPageIndicator(controller: _pageController),
-            const SizedBox(height: 32),
-            Expanded(
-              // حطيتها علشان اخلي العنصر يتكيف مع المكان وكان في حل ان احط singlechildscrollview للكولمن
-              child: Text(
-                'Expolore the history with Dalel in a smart way',
-                style: CustomTextStyles.poppins500style24
-                    .copyWith(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
+            const SizedBox(height: 13),
+            Text(
+              onBoardingData[index].title,
+              style: CustomTextStyles.poppins500style24
+                  .copyWith(fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 16),
-            const Text(
-              'Expolore the history with Dalel in a smart way',
+            const SizedBox(height: 10),
+            Text(
+              onBoardingData[index].subTitle,
               style: CustomTextStyles.poppins300style16,
               textAlign: TextAlign.center,
             ),

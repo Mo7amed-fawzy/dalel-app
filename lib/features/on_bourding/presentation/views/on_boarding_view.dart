@@ -18,15 +18,14 @@ class _OnBourdingViewState extends State<OnBourdingView> {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
             children: [
               const SizedBox(height: 40),
               const CustomNavBar(),
               OnBoardingBody(),
-              CustomBtn(
-                text: AppStrings.next,
-                onPressed: () {},
-              ),
+              const SizedBox(height: 88),
+              CustomBtn(onPressed: () {}, text: AppStrings.next),
               const SizedBox(height: 17),
             ],
           ),

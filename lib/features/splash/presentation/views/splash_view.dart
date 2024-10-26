@@ -34,6 +34,6 @@ class _SplashViewState extends State<SplashView> {
 void delayedNavigate(context) {
   Future.delayed(const Duration(seconds: 2), () {
     //ممكن يكون غير صالح بعد مرور الوقت BuildContext فاستعملنا mounted اتاكد لسا متصله بالشجره ولا لا
-    customNavigate(context, toOnbourding);
+    customReplacementNavigate(context, toOnbourding);
   });
 }

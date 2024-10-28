@@ -1,9 +1,9 @@
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/widgets/custom_btn.dart';
-import 'package:dalel_app/features/auth/presentation/views/widgets/custom_text_field.dart';
-import 'package:dalel_app/features/auth/presentation/views/widgets/have_an_account_widget.dart';
-import 'package:dalel_app/features/auth/presentation/views/widgets/terms_and_condition.dart';
-import 'package:dalel_app/features/auth/presentation/views/widgets/welcome_text_widget.dart';
+import 'package:dalel_app/features/auth/presentation/widgets/custom_text_field.dart';
+import 'package:dalel_app/features/auth/presentation/widgets/have_an_account_widget.dart';
+import 'package:dalel_app/features/auth/presentation/widgets/terms_and_condition.dart';
+import 'package:dalel_app/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class SignUpView extends StatelessWidget {

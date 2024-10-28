@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "755084894104",
+    "project_id": "delel-f826b",
+    "storage_bucket": "delel-f826b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755084894104:android:ce292a8abd8f919fadd5ed",
+        "android_client_info": {
+          "package_name": "dalel.co"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdfCLlYoKVvvmBoC_q4Khsyl8F6iyVUuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

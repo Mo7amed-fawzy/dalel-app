@@ -34,8 +34,8 @@ class _SplashViewState extends State<SplashView> {
   }
 }
 
-void checkFirstVisitOrNot(
-    BuildContext context, String key, String ifFirst, String ifNot) {
+void checkFirstVisitOrNot(BuildContext context, String key,
+    String ifFirstContinue, String ifNoTToOnBoarding) {
   bool isVisited = getIt<CacheHelper>().getData(key: key) ?? false;
 
   // تأخير الانتقال إلى الصفحة المطلوبة
@@ -43,9 +43,9 @@ void checkFirstVisitOrNot(
     //ممكن يكون غير صالح بعد مرور الوقت BuildContext فاستعملنا mounted اتاكد لسا متصله بالشجره ولا لا
     if (context.mounted) {
       if (isVisited) {
-        customReplacementNavigate(context, ifFirst);
+        customReplacementNavigate(context, ifFirstContinue);
       } else {
-        customReplacementNavigate(context, ifNot);
+        customReplacementNavigate(context, ifNoTToOnBoarding);
       }
     }
   });

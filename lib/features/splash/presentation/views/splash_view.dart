@@ -1,5 +1,7 @@
+import 'package:dalel_app/core/database/cache/cache_helper.dart';
 import 'package:dalel_app/core/functions/navigation.dart';
 import 'package:dalel_app/core/routes/app_router.dart';
+import 'package:dalel_app/core/services/service_locator.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +16,9 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    delayedNavigate(context);
     super.initState();
+    checkFirstVisitOrNot(
+        context, 'isOnBoardingVisited', signUpPage, toOnbourding);
   }
 
   @override
@@ -31,9 +34,19 @@ class _SplashViewState extends State<SplashView> {
   }
 }
 
-void delayedNavigate(context) {
+void checkFirstVisitOrNot(
+    BuildContext context, String key, String ifFirst, String ifNot) {
+  bool isVisited = getIt<CacheHelper>().getData(key: key) ?? false;
+
+  // تأخير الانتقال إلى الصفحة المطلوبة
   Future.delayed(const Duration(seconds: 2), () {
     //ممكن يكون غير صالح بعد مرور الوقت BuildContext فاستعملنا mounted اتاكد لسا متصله بالشجره ولا لا
-    customReplacementNavigate(context, toOnbourding);
+    if (context.mounted) {
+      if (isVisited) {
+        customReplacementNavigate(context, ifFirst);
+      } else {
+        customReplacementNavigate(context, ifNot);
+      }
+    }
   });
 }

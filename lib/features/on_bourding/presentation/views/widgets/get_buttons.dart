@@ -2,7 +2,7 @@ import 'package:dalel_app/core/functions/navigation.dart';
 import 'package:dalel_app/core/routes/app_router.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/widgets/custom_btn.dart';
-import 'package:dalel_app/features/auth/presentation/views/widgets/login_now_style.dart';
+import 'package:dalel_app/features/auth/presentation/widgets/login_now_style.dart';
 import 'package:dalel_app/features/on_bourding/data/models/on_boarding_model.dart';
 import 'package:dalel_app/features/on_bourding/presentation/views/functions/if_on_boarding.dart';
 import 'package:flutter/material.dart';

@@ -2,21 +2,31 @@ import 'package:dalel_app/core/utils/app_colors.dart';
 import 'package:dalel_app/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.labelText});
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField(
+      {super.key,
+      required this.labelText,
+      this.onChanged,
+      this.onFieldSubmitted});
   final String labelText;
+  final Function(String)? onChanged;
+  final Function(String)? onFieldSubmitted;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 8.0, top: 24.0),
-      child: TextField(
+      child: TextFormField(
+          onChanged: onChanged,
+          //عبارة عن فنكشن بترجع الفاليو الجوا التكست فيلد
+          onFieldSubmitted: onFieldSubmitted,
+          // دي زي الفوق بس بتسمع اول مدوس اكسبت
           decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: CustomTextStyles.poppins500style18,
-        border: getBorderStyle(),
-        enabledBorder: getBorderStyle(),
-        focusedBorder: getBorderStyle(),
-      )),
+            labelText: labelText,
+            labelStyle: CustomTextStyles.poppins500style18,
+            border: getBorderStyle(),
+            enabledBorder: getBorderStyle(),
+            focusedBorder: getBorderStyle(),
+          )),
     );
   }
 }

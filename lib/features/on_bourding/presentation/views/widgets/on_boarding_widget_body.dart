@@ -4,11 +4,14 @@ import 'package:dalel_app/features/on_bourding/presentation/views/widgets/custom
 import 'package:flutter/material.dart';
 
 class OnBoardingBody extends StatelessWidget {
-  OnBoardingBody({super.key});
+  const OnBoardingBody(
+      {super.key, required this.controler, this.onPageChanged});
 // تحديد أن الكائن هو ثابت يمكن إنشاؤه مرة واحدة فقط، ويمكن استخدامه في أوقات لاحقة دون الحاجة إلى إعادة إنشائه const
 // بس علشان بستعمل فاينال فدا معناه ان المتغيرات دي مش ثابته
-  final PageController _pageController = PageController();
+  final PageController controler;
   // فاينال يعني هعين قيمته مره وحده بس (غير ثابته)
+
+  final Function(int)? onPageChanged;
   @override
   Widget build(BuildContext context) {
     return
@@ -17,8 +20,9 @@ class OnBoardingBody extends StatelessWidget {
       height: 500,
       //دي البتخليني اسكرول يمين وشمال حسب الداتا العندي
       child: PageView.builder(
+        onPageChanged: onPageChanged,
         physics: const BouncingScrollPhysics(),
-        controller: _pageController,
+        controller: controler,
         itemCount: onBoardingData.length,
         itemBuilder: (context, index) {
           return Column(children: [
@@ -36,7 +40,7 @@ class OnBoardingBody extends StatelessWidget {
             ),
             // Image.asset(Assets.imagesOnBoarding1),
             const SizedBox(height: 13),
-            CustomSmoothPageIndicator(controller: _pageController),
+            CustomSmoothPageIndicator(controller: controler),
             const SizedBox(height: 13),
             Text(
               onBoardingData[index].title,

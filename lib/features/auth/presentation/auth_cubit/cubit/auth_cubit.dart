@@ -1,14 +1,18 @@
 import 'package:dalel_app/features/auth/presentation/auth_cubit/cubit/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
-  late String? firstName;
-  late String? lastName;
-  late String? emailAddress;
-  late String? password;
+  String? firstName;
+  String? lastName;
+  String? emailAddress;
+  String? password;
+  GlobalKey<FormState> signUpFormKey = GlobalKey();
+  bool? termsAndConditionCheckValues = false;
+  bool? isPasswordVisible = false;
 
   createUserWithEmailAndPassword() async {
     try {
@@ -31,5 +35,19 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(SignUpFailureState(errMessage: e.toString()));
     }
+  }
+
+  updatesTermsAndConditionsCeckBox({required newValue}) {
+    termsAndConditionCheckValues = newValue;
+    emit(TermsAndConditionUpdateState());
+  }
+
+  void togglePasswordVisibility() {
+    if (isPasswordVisible == true) {
+      isPasswordVisible = false;
+    } else {
+      isPasswordVisible = true;
+    }
+    emit(TogglePasswordVisibilityState());
   }
 }

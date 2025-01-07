@@ -1,3 +1,6 @@
+import 'package:dalel_app/core/functions/custom_toast.dart';
+import 'package:dalel_app/core/functions/navigation.dart';
+import 'package:dalel_app/core/routes/app_router.dart';
 import 'package:dalel_app/core/utils/app_colors.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/widgets/custom_btn.dart';
@@ -14,9 +17,17 @@ class CustomSignUpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is SignUpSuccessState) {
+          showToast('Account Created Successfully');
+          customReplacementNavigate(context, signInPage);
+        } else if (state is SignUpFailureState) {
+          showToast(state.errMessage, AppColors.lightGrey);
+        }
+      },
       builder: (context, state) {
         AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
+        bool isLoading = state is SignUpLoadingState;
 
         return Form(
           // بقدر من خلالو اتحكم فالفورم بتعتي
@@ -43,6 +54,7 @@ class CustomSignUpForm extends StatelessWidget {
               ),
               CustomTextFormField(
                 isPassword: true,
+                isPasswordVisible: authCubit.isPasswordVisible!,
                 labelText: AppStrings.password,
                 onPassowrdPressed: () {
                   authCubit.togglePasswordVisibility();
@@ -64,7 +76,12 @@ class CustomSignUpForm extends StatelessWidget {
                     }
                   }
                 },
-                text: AppStrings.signUp,
+                text: isLoading ? '' : AppStrings.signUp, // isLoading == false
+                customWidget: isLoading
+                    ? CircularProgressIndicator(
+                        color: AppColors.offWhite,
+                      )
+                    : null,
               ),
             ],
           ),

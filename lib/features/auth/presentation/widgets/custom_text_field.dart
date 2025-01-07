@@ -25,18 +25,17 @@ class CustomTextFormField extends StatelessWidget {
         padding: const EdgeInsets.only(right: 8.0, left: 8.0, top: 24.0),
         child: TextFormField(
           obscureText: isPassword && !isPasswordVisible,
-          validator: isPassword
-              ? (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Password is required";
-                  } else if (value.length < 6) {
-                    return "Password must be at least 6 characters";
-                  }
-                  return null;
-                }
-              : (value) {
-                  return 'there was wrong';
-                }, // يتم استخدام الفاليديتور الممرر كمعامل
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return isPassword
+                  ? "Password is required"
+                  : "This field is required";
+            } else if (isPassword && value.length < 6) {
+              return "Password must be at least 6 characters";
+            }
+            return null;
+          },
+          // يتم استخدام الفاليديتور الممرر كمعامل
           onChanged: onChanged,
           onFieldSubmitted: onFieldSubmitted,
           decoration: InputDecoration(
@@ -49,9 +48,7 @@ class CustomTextFormField extends StatelessWidget {
             suffixIcon: isPassword
                 ? IconButton(
                     icon: Icon(
-                      isPasswordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                      isPassword ? Icons.visibility : Icons.visibility_off,
                     ),
                     onPressed: onPassowrdPressed,
                   )

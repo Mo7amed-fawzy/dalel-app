@@ -19,7 +19,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     checkFirstVisitOrNot(
-        context, 'isOnBoardingVisited', signUpPage, toOnbourding);
+        context, 'isOnBoardingVisited', signInPage, toOnbourding);
   }
 
   @override
@@ -44,7 +44,7 @@ void checkFirstVisitOrNot(BuildContext context, String key,
     //ممكن يكون غير صالح بعد مرور الوقت BuildContext فاستعملنا mounted اتاكد لسا متصله بالشجره ولا لا
     if (context.mounted) {
       if (isVisited) {
-        FirebaseAuth.instance.currentUser == null
+        FirebaseAuth.instance.currentUser == null // لو معنديش اكونت
             ? customReplacementNavigate(context, ifFirstContinue)
             : customReplacementNavigate(context, homeView);
       } else {

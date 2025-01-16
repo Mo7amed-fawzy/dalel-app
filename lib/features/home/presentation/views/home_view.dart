@@ -1,9 +1,10 @@
 import 'package:dalel_app/core/functions/navigation.dart';
 import 'package:dalel_app/core/routes/app_router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SignInView extends StatelessWidget {
-  const SignInView({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +13,14 @@ class SignInView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              customNavigate(context, signUpPage);
+              FirebaseAuth.instance.signOut();
+              customReplacementNavigate(context, signInPage);
             },
             icon: const Icon(Icons.logout),
           ),
         ],
       ),
+      body: const Center(child: Text('Home View')),
     );
   }
 }

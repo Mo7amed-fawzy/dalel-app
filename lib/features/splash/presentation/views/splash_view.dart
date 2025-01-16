@@ -4,6 +4,7 @@ import 'package:dalel_app/core/routes/app_router.dart';
 import 'package:dalel_app/core/services/service_locator.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/utils/app_text_styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -43,7 +44,9 @@ void checkFirstVisitOrNot(BuildContext context, String key,
     //ممكن يكون غير صالح بعد مرور الوقت BuildContext فاستعملنا mounted اتاكد لسا متصله بالشجره ولا لا
     if (context.mounted) {
       if (isVisited) {
-        customReplacementNavigate(context, ifFirstContinue);
+        FirebaseAuth.instance.currentUser == null
+            ? customReplacementNavigate(context, ifFirstContinue)
+            : customReplacementNavigate(context, homeView);
       } else {
         customReplacementNavigate(context, ifNoTToOnBoarding);
       }

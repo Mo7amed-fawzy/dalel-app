@@ -15,6 +15,8 @@ class AuthCubit extends Cubit<AuthState> {
   bool? termsAndConditionCheckValues = false;
   bool? isPasswordVisible = false;
   GlobalKey<FormState> signinFormKey = GlobalKey();
+  GlobalKey<FormState> forgotPasswordFormKey = GlobalKey();
+
   createUserWithEmailAndPassword() async {
     try {
       emit(SignUpLoadingState());
@@ -89,4 +91,23 @@ class AuthCubit extends Cubit<AuthState> {
       );
     }
   }
+
+  Future<void> resetPasswordWithLink() async {
+    try {
+      emit(ResetPasswordLoadingState());
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: emailAddress!);
+      emit(ResetPasswordSuccessState());
+    } catch (e) {
+      emit(ResetPasswordFailureState(errMessage: e.toString()));
+    }
+  }
+
+  // Future<void> addUserProfile() async {
+  //   CollectionReference users = FirebaseFirestore.instance.collection("users");
+  //   await users.add({
+  //     "email": emailAddress,
+  //     "frist_name": fristName,
+  //     "last_name": lastName,
+  //   });
+  // }
 }

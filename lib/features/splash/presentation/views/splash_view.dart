@@ -46,10 +46,17 @@ void checkFirstVisitOrNot(BuildContext context, String key,
       if (isVisited) {
         FirebaseAuth.instance.currentUser == null // لو معنديش اكونت
             ? customReplacementNavigate(context, ifFirstContinue)
-            : customReplacementNavigate(context, homeView);
+            : checkEmailVerifiedOrNot(context, signInPage, homeView);
       } else {
         customReplacementNavigate(context, ifNoTToOnBoarding);
       }
     }
   });
+}
+
+void checkEmailVerifiedOrNot(
+    BuildContext context, String homePage, String signInPage) {
+  FirebaseAuth.instance.currentUser?.emailVerified == false
+      ? customReplacementNavigate(context, signInPage)
+      : customReplacementNavigate(context, homePage);
 }

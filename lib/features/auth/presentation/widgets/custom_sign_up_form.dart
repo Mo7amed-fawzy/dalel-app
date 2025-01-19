@@ -36,8 +36,8 @@ class CustomSignUpForm extends StatelessWidget {
             children: [
               CustomTextFormField(
                 labelText: AppStrings.fristName,
-                onChanged: (firstName) {
-                  authCubit.firstName = firstName;
+                onChanged: (fristName) {
+                  authCubit.fristName = fristName;
                 },
               ),
               CustomTextFormField(

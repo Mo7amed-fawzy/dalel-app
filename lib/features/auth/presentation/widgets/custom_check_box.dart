@@ -22,7 +22,7 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
         setState(() {
           value = newValue;
           BlocProvider.of<AuthCubit>(context)
-              .updatesTermsAndConditionsCeckBox(newValue: newValue);
+              .updatesTermsAndConditionsCeckBox(newValue: newValue!);
         });
       },
     );

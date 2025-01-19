@@ -18,7 +18,7 @@ class AuthCubit extends Cubit<AuthState> {
   GlobalKey<FormState> signinFormKey = GlobalKey();
   GlobalKey<FormState> forgotPasswordFormKey = GlobalKey();
 
-  createUserWithEmailAndPassword() async {
+  Future<void> createUserWithEmailAndPassword() async {
     try {
       emit(SignUpLoadingState());
       // ignore: unused_local_variable
@@ -31,20 +31,24 @@ class AuthCubit extends Cubit<AuthState> {
       await verifyEmail();
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        emit(SignUpFailureState(
-            errMessage: 'The password provided is too weak.'));
-      } else if (e.code == 'email-already-in-use') {
-        emit(SignUpFailureState(
-            errMessage: 'The account already exists for that email.'));
-      } else if (e.code == 'invaled-email') {
-        emit(SignUpFailureState(errMessage: 'This email is invaled.'));
-      } else {
-        printHere(e.code);
-        emit(SignUpFailureState(errMessage: e.code));
-      }
+      _signUpHandleException(e);
     } catch (e) {
       emit(SignUpFailureState(errMessage: e.toString()));
+    }
+  }
+
+  void _signUpHandleException(FirebaseAuthException e) {
+    if (e.code == 'weak-password') {
+      emit(
+          SignUpFailureState(errMessage: 'The password provided is too weak.'));
+    } else if (e.code == 'email-already-in-use') {
+      emit(SignUpFailureState(
+          errMessage: 'The account already exists for that email.'));
+    } else if (e.code == 'invaled-email') {
+      emit(SignUpFailureState(errMessage: 'This email is invaled.'));
+    } else {
+      printHere(e.code);
+      emit(SignUpFailureState(errMessage: e.code));
     }
   }
 
@@ -52,7 +56,7 @@ class AuthCubit extends Cubit<AuthState> {
     await FirebaseAuth.instance.currentUser!.sendEmailVerification();
   }
 
-  updatesTermsAndConditionsCeckBox({required newValue}) {
+  void updatesTermsAndConditionsCeckBox({required bool newValue}) {
     termsAndConditionCheckValues = newValue;
     emit(TermsAndConditionUpdateState());
   }

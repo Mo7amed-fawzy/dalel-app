@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel_app/core/functions/print_statement.dart';
 import 'package:dalel_app/features/auth/presentation/auth_cubit/cubit/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
-  String? firstName;
+  String? fristName;
   String? lastName;
   String? emailAddress;
   String? password;
@@ -26,7 +27,8 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress!,
         password: password!,
       );
-      verifyEmail();
+      await addUserProfile();
+      await verifyEmail();
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -102,12 +104,12 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  // Future<void> addUserProfile() async {
-  //   CollectionReference users = FirebaseFirestore.instance.collection("users");
-  //   await users.add({
-  //     "email": emailAddress,
-  //     "frist_name": fristName,
-  //     "last_name": lastName,
-  //   });
-  // }
+  Future<void> addUserProfile() async {
+    CollectionReference users = FirebaseFirestore.instance.collection("users");
+    await users.add({
+      "email": emailAddress,
+      "frist_name": fristName,
+      "last_name": lastName,
+    });
+  }
 }

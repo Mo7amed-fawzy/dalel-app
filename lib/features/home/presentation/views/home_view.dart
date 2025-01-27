@@ -1,6 +1,8 @@
-import 'package:dalel_app/core/functions/navigation.dart';
-import 'package:dalel_app/core/routes/app_router.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dalel_app/features/home/presentation/widgets/home_sections/historical_characters_section.dart';
+import 'package:dalel_app/features/home/presentation/widgets/home_sections/historical_periods_section.dart';
+import 'package:dalel_app/features/home/presentation/widgets/home_sections/historical_souvenirs_section.dart';
+import 'package:dalel_app/features/home/presentation/widgets/home_sections/home_app_bar_section.dart';
+import 'package:dalel_app/features/home/presentation/widgets/trending_section.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -8,19 +10,25 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-              customReplacementNavigate(context, signInPage);
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ],
+    return const Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.0),
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            //!Appbar
+            SliverToBoxAdapter(child: HomeAppBarSection()),
+            //!Historical Periods
+            SliverToBoxAdapter(child: HistoricalPeriodsSection()),
+            //!Historical Characters
+            SliverToBoxAdapter(child: HistoricalCharactersSection()),
+            //!Historical Souvenirs
+            SliverToBoxAdapter(child: HistoricalSouvenirsSection()),
+            //! Trending Section
+            SliverToBoxAdapter(child: TrendingSection()),
+          ],
+        ),
       ),
-      body: const Center(child: Text('Home View')),
     );
   }
 }

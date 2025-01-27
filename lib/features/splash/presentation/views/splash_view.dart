@@ -1,5 +1,6 @@
 import 'package:dalel_app/core/database/cache/cache_helper.dart';
 import 'package:dalel_app/core/functions/navigation.dart';
+import 'package:dalel_app/core/functions/print_statement.dart';
 import 'package:dalel_app/core/routes/app_router.dart';
 import 'package:dalel_app/core/services/service_locator.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
@@ -39,14 +40,17 @@ void checkFirstVisitOrNot(BuildContext context, String key,
     String ifFirstContinue, String ifNoTToOnBoarding) {
   bool isVisited = getIt<CacheHelper>().getData(key: key) ?? false;
 
-  // تأخير الانتقال إلى الصفحة المطلوبة
   Future.delayed(const Duration(seconds: 2), () {
-    //ممكن يكون غير صالح بعد مرور الوقت BuildContext فاستعملنا mounted اتاكد لسا متصله بالشجره ولا لا
     if (context.mounted) {
+      printHere('isVisited: $isVisited');
+      printHere('currentUser: ${FirebaseAuth.instance.currentUser}');
+
       if (isVisited) {
-        FirebaseAuth.instance.currentUser == null // لو معنديش اكونت
-            ? customReplacementNavigate(context, ifFirstContinue)
-            : checkEmailVerifiedOrNot(context, signInPage, homeView);
+        if (FirebaseAuth.instance.currentUser != null) {
+          checkEmailVerifiedOrNot(context, homeNavBar, signInPage);
+        } else {
+          customReplacementNavigate(context, signInPage);
+        }
       } else {
         customReplacementNavigate(context, ifNoTToOnBoarding);
       }
@@ -54,9 +58,18 @@ void checkFirstVisitOrNot(BuildContext context, String key,
   });
 }
 
-void checkEmailVerifiedOrNot(
-    BuildContext context, String homePage, String signInPage) {
-  FirebaseAuth.instance.currentUser?.emailVerified == false
-      ? customReplacementNavigate(context, signInPage)
-      : customReplacementNavigate(context, homePage);
+void checkEmailVerifiedOrNot(BuildContext context, String home, String signIn) {
+  bool isVerified = FirebaseAuth.instance.currentUser?.emailVerified ?? false;
+  printHere('emailVerified: $isVerified');
+
+  isVerified
+      ? customReplacementNavigate(context, home)
+      : customReplacementNavigate(context, signIn);
 }
+
+// void checkEmailVerifiedOrNot(
+//     BuildContext context, String homePage, String signInPage) {
+//   FirebaseAuth.instance.currentUser?.emailVerified == false
+//       ? customReplacementNavigate(context, signInPage)
+//       : customReplacementNavigate(context, homePage);
+// }

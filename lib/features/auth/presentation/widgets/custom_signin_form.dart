@@ -1,5 +1,6 @@
 import 'package:dalel_app/core/functions/custom_toast.dart';
 import 'package:dalel_app/core/functions/navigation.dart';
+import 'package:dalel_app/core/routes/app_router.dart';
 import 'package:dalel_app/core/utils/app_colors.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/widgets/custom_btn.dart';
@@ -19,7 +20,7 @@ class CustomSignInForm extends StatelessWidget {
       listener: (context, state) {
         if (state is SigninSuccessState) {
           FirebaseAuth.instance.currentUser!.emailVerified
-              ? customReplacementNavigate(context, "/homeNavBar")
+              ? customReplacementNavigate(context, homeNavBar)
               : showToast("Please Verify Your Account");
         } else if (state is SigninFailureState) {
           showToast(state.errMessage);

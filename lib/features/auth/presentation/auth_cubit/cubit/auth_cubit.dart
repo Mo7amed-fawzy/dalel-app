@@ -110,10 +110,13 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> addUserProfile() async {
     CollectionReference users = FirebaseFirestore.instance.collection("users");
+    printHere("Adding user profile: $emailAddress, $fristName, $lastName");
+
     await users.add({
       "email": emailAddress,
       "frist_name": fristName,
       "last_name": lastName,
+      "password": password,
     });
   }
 }

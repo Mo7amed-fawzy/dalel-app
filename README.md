@@ -10,7 +10,7 @@ This project contains UI code, screenshots, and demo assets for portfolio presen
 ## 🎬 Demo Videos  
 
 - **Mobile App Demo**  
-  [![Web Demo](assets/screenshots/splash/splash.png.png)](assets/video/dalel_app.mp4.mp4)  
+  [![Web Demo](assets/screenshots/splash/splash.png.png)](assets/video/dalel_app.mp4)  
 
 
 📂 Videos are stored in the `assets\video` folder for reference purposes.  

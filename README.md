@@ -5,7 +5,17 @@
 Dalel App is a demo project showcasing Flutter UI, Firebase integration, and BLoC state management. It is not intended as a live client application.
 
 This project contains UI code, screenshots, and demo assets for portfolio presentation. It serves as a visual reference of my Flutter development skills.
+---
 
+## 🎬 Demo Videos  
+
+- **Mobile App Demo**  
+  [![Web Demo](assets/screenshots/splash/splash.png.png)](assets/video/dalel_app.mp4.mp4)  
+
+
+📂 Videos are stored in the `assets\video` folder for reference purposes.  
+
+---
 🎬 Demo Screenshots
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
@@ -72,7 +82,7 @@ To run this project locally:
 
 1. Clone the repo:
 ```bash
-   git clone https://github.com/your-username/real-estate-ui.git
+   git clone https://github.com/your-username/dalel-app.git
 ```
 
 

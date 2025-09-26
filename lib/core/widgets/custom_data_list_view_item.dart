@@ -11,6 +11,7 @@ class CustomDataListViewItem extends StatelessWidget {
       {super.key, required this.model, required this.routePath});
   final DataModel model;
   final String routePath;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,14 +20,21 @@ class CustomDataListViewItem extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
-            boxShadow: [
-              BoxShadow(
-                  color: AppColors.grey,
-                  blurRadius: 10,
-                  offset: const Offset(0, 7))
-            ]),
+          gradient: LinearGradient(
+            colors: [
+              AppColors.offWhite,
+              AppColors.offWhite.withOpacity(0.9),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.grey.withOpacity(0.4),
+              blurRadius: 12,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
         width: 164,
         height: 96,
         child: Row(
@@ -44,24 +52,29 @@ class CustomDataListViewItem extends StatelessWidget {
                 style: CustomTextStyles.poppins500style18.copyWith(
                   fontSize: 16,
                   color: AppColors.deepBrown,
+                  letterSpacing: 0.3,
                 ),
               ),
             ),
             SizedBox(
               height: 64,
               width: 47,
-              child: CachedNetworkImage(
-                imageUrl: model.image,
-                placeholder: (context, url) => Shimmer.fromColors(
-                  baseColor: AppColors.grey,
-                  highlightColor: Colors.white,
-                  child: Container(
-                    width: 47,
-                    height: 64,
-                    color: AppColors.grey,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: CachedNetworkImage(
+                  imageUrl: model.image,
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: AppColors.grey,
+                    highlightColor: Colors.white,
+                    child: Container(
+                      width: 47,
+                      height: 64,
+                      color: AppColors.grey,
+                    ),
                   ),
+                  errorWidget: (context, url, error) =>
+                      Icon(Icons.error, color: AppColors.deepBrown),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             const SizedBox(width: 15),

@@ -12,33 +12,38 @@ class CustomCategoryListViewItem extends StatelessWidget {
       width: 74,
       height: 150,
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-                color: AppColors.grey,
-                blurRadius: 10,
-                offset: const Offset(0, 7))
-          ]),
+        color: AppColors.offWhite,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.grey.withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 8),
+          )
+        ],
+      ),
       child: Column(
         children: [
           Container(
             width: 74,
             height: 96,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(12),
               image: const DecorationImage(
                 image: AssetImage(
                   Assets.imagesFrame3,
                 ),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
           ),
           const SizedBox(height: 11),
           Text(
             "Lionheart",
-            style: CustomTextStyles.poppins500style14,
+            style: CustomTextStyles.poppins500style14.copyWith(
+              color: AppColors.deepBrown,
+              letterSpacing: 0.3,
+            ),
           )
         ],
       ),

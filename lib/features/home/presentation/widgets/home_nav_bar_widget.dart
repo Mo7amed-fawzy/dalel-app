@@ -1,3 +1,4 @@
+import 'package:dalel_app/core/functions/print_statement.dart';
 import 'package:dalel_app/core/utils/app_assets.dart';
 import 'package:dalel_app/core/utils/app_colors.dart';
 import 'package:dalel_app/features/cart/presentaion/views/cart_view.dart';
@@ -5,6 +6,7 @@ import 'package:dalel_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:dalel_app/features/home/presentation/views/home_view.dart';
 import 'package:dalel_app/features/profile/presentation/views/profile_view.dart';
 import 'package:dalel_app/features/search/presentaion/views/search_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -33,6 +35,8 @@ class HomeNavBarWidget extends StatelessWidget {
 }
 
 List<Widget> _buildScreens() {
+  final email = FirebaseAuth.instance.currentUser!.email!;
+  printHere('$email this is my uid هنااااااااا');
   return [
     BlocProvider // هنا بحط الكيوبيت فوق السكرين العاوزينها بظبط
         (

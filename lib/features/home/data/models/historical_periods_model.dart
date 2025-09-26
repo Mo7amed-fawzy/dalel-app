@@ -10,6 +10,7 @@ class HistoricalPeriodsModel extends DataModel {
     required super.image,
     required super.discription,
     required this.wars,
+    required super.category,
   });
   factory HistoricalPeriodsModel.fromJson(jsonData, warsList) {
     return HistoricalPeriodsModel(
@@ -17,6 +18,7 @@ class HistoricalPeriodsModel extends DataModel {
       image: jsonData[FireBaseStrings.image],
       discription: jsonData[FireBaseStrings.description],
       wars: warsList,
+      category: jsonData[FireBaseStrings.category],
     );
   }
 }

@@ -76,4 +76,5 @@ abstract class FireBaseStrings {
   static const String description = "description";
   static const String image = "image";
   static const String wars = "wars";
+  static const String category = "category";
 }

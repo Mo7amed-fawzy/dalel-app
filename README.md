@@ -7,32 +7,36 @@ Dalel App is a demo project showcasing Flutter UI, Firebase integration, and BLo
 This project contains UI code, screenshots, and demo assets for portfolio presentation. It serves as a visual reference of my Flutter development skills.
 
 🎬 Demo Screenshots
-Splash Screen  
-![Splash](assets/screenshots/splash/splash.png)
 
-Onboarding Screens  
-![Onboarding 1](assets/screenshots/onboarding/onboarding_1.png)  
-![Onboarding 2](assets/screenshots/onboarding/onboarding_2.png)  
-![Onboarding 3](assets/screenshots/onboarding/onboarding_3.png)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
 
-Authentication Screens  
-![Sign In](assets/screenshots/auth/auth_signIn.png)  
-![Sign Up](assets/screenshots/auth/auth_signUp.png)  
-![Reset Password](assets/screenshots/auth/reset_password.png)
+<!-- Splash -->
+<img src="assets/screenshots/splash/splash.png" width="300" alt="Splash Screen" />
 
-Home Screen  
-![Home](assets/screenshots/home/home.png)
+<!-- Onboarding -->
+<img src="assets/screenshots/onboarding/onboarding_1.png" width="300" alt="Onboarding 1" />
+<img src="assets/screenshots/onboarding/onboarding_2.png" width="300" alt="Onboarding 2" />
+<img src="assets/screenshots/onboarding/onboarding_3.png" width="300" alt="Onboarding 3" />
 
-Search Screen  
-![Search](assets/screenshots/search/search.png)
+<!-- Authentication -->
+<img src="assets/screenshots/auth/auth_signIn.png" width="300" alt="Sign In" />
+<img src="assets/screenshots/auth/auth_signUp.png" width="300" alt="Sign Up" />
+<img src="assets/screenshots/auth/reset_password.png" width="300" alt="Reset Password" />
 
-Profile Screen  
-![Profile](assets/screenshots/profile/profile.png)
+<!-- Home -->
+<img src="assets/screenshots/home/home.png" width="300" alt="Home Screen" />
 
-Cart Screen  
-![Cart](assets/screenshots/cart/cart.png)
+<!-- Search -->
+<img src="assets/screenshots/search/search.png" width="300" alt="Search Screen" />
 
-📂 Project Structure
+<!-- Profile -->
+<img src="assets/screenshots/profile/profile.png" width="300" alt="Profile Screen" />
+
+<!-- Cart -->
+<img src="assets/screenshots/cart/cart.png" width="300" alt="Cart Screen" />
+
+</div>
+
 
 ---
 
@@ -69,7 +73,7 @@ To run this project locally:
 1. Clone the repo:
 ```bash
    git clone https://github.com/your-username/real-estate-ui.git
-
+```
 
 
 ## Notes

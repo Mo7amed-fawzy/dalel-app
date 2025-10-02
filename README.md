@@ -10,7 +10,7 @@ This project contains UI code, screenshots, and demo assets for portfolio presen
 ## 🎬 Demo Videos  
 
 - **Mobile App Demo**  
-  [![Web Demo](assets/screenshots/splash/splash.png)](assets/video/dalel_app.mp4)  
+  [![app Demo](assets/screenshots/splash/splash.png)](assets/video/dalel_app.mp4)  
 
 
 📂 Videos are stored in the `assets\video` folder for reference purposes.  
@@ -82,7 +82,7 @@ To run this project locally:
 
 1. Clone the repo:
 ```bash
-   git clone https://github.com/your-username/dalel-app.git
+   git clone https://github.com/Mo7amed-fawzy/dalel-app.git
 ```
 
 
